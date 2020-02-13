@@ -5,8 +5,21 @@ var square  = document.querySelectorAll(".square");
 var rgbColor = document.getElementById("rgbColor");
 var message = document.getElementById("message");
 var bgColor = document.getElementById("bgColor");
+var resetButton = document.getElementById("reset");
 
 rgbColor.textContent = selectedColor;
+
+resetButton.addEventListener("click", function() {
+    colors = randomAllRgb(6);
+    selectedColor = randomColor();
+    rgbColor.textContent = selectedColor;
+    for(var i = 0; i < square.length; i++){
+        square[i].style.backgroundColor = colors[i];
+    }
+    bgColor.style.backgroundColor = "#232323";
+    resetButton.textContent = "New Game";
+    message.textContent = "Good Luck!!!";
+});
 
 for(var i = 0; i < square.length; i++) {
     square[i].style.backgroundColor = colors[i];
@@ -14,6 +27,7 @@ for(var i = 0; i < square.length; i++) {
         var clickedColor = this.style.backgroundColor;
         if(clickedColor === selectedColor) {
             message.textContent = "Correct!";
+            resetButton.textContent = "Play again?";
             changeColors();
         } else {
             this.style.backgroundColor = "#232323";
@@ -37,13 +51,12 @@ function randomColor(random) {
 function randomAllRgb(num) {
     var colors = [];
     for(var i = 0; i < num; i++) {
-        allRgb()
         colors.push(allRgb());
     }
     return colors;
 }
 
-function allRgb(random) {
+function allRgb() {
     var r = Math.floor(Math.random() * 256);
     var g = Math.floor(Math.random() * 256);
     var b = Math.floor(Math.random() * 256);

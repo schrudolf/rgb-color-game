@@ -1,25 +1,54 @@
-var colors = randomAllRgb(6);
-
+var squareNumber = 6;
+var colors = randomAllRgb(squareNumber);
 var selectedColor = randomColor();
 var square  = document.querySelectorAll(".square");
 var rgbColor = document.getElementById("rgbColor");
 var message = document.getElementById("message");
 var bgColor = document.getElementById("bgColor");
 var resetButton = document.getElementById("reset");
+var easyBtn = document.getElementById("easyBtn"); 
+var hardBtn = document.getElementById("hardBtn"); 
 
-rgbColor.textContent = selectedColor;
+easyBtn.addEventListener("click", function(){
+    easyBtn.classList.add("selected")
+    hardBtn.classList.remove("selected")
+    squareNumber = 3;
+    colors = randomAllRgb(squareNumber);
+    selectedColor = randomColor();
+    rgbColor.textContent = selectedColor;
+    for(var i = 0; i < square.length; i++){
+        if(colors[i]) {
+        square[i].style.backgroundColor = colors[i];
+        } else {
+            square[i].style.display = "none";
+        }
+    }   
+})
+
+hardBtn.addEventListener("click", function(){
+    hardBtn.classList.add("selected")
+    easyBtn.classList.remove("selected")
+    squareNumber = 6;
+    colors = randomAllRgb(squareNumber);
+    selectedColor = randomColor();
+    rgbColor.textContent = selectedColor;
+    for(var i = 0; i < square.length; i++){
+        square[i].style.backgroundColor = colors[i];
+        square[i].style.display = "block";
+    }
+})
 
 resetButton.addEventListener("click", function() {
-    colors = randomAllRgb(6);
+    colors = randomAllRgb(squareNumber);
     selectedColor = randomColor();
     rgbColor.textContent = selectedColor;
     for(var i = 0; i < square.length; i++){
         square[i].style.backgroundColor = colors[i];
     }
     bgColor.style.backgroundColor = "#232323";
-    resetButton.textContent = "New Game";
-    message.textContent = "Good Luck!!!";
 });
+
+rgbColor.textContent = selectedColor;
 
 for(var i = 0; i < square.length; i++) {
     square[i].style.backgroundColor = colors[i];

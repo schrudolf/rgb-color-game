@@ -45,7 +45,9 @@ resetButton.addEventListener("click", function() {
     for(var i = 0; i < square.length; i++){
         square[i].style.backgroundColor = colors[i];
     }
-    bgColor.style.backgroundColor = "#232323";
+    bgColor.style.backgroundColor = "steelblue";
+    message.textContent = "Good Luck!";
+    message.style.color = "#EE82EE";
 });
 
 rgbColor.textContent = selectedColor;
@@ -56,11 +58,13 @@ for(var i = 0; i < square.length; i++) {
         var clickedColor = this.style.backgroundColor;
         if(clickedColor === selectedColor) {
             message.textContent = "Correct!";
+            message.style.color = "#32CD32";
             resetButton.textContent = "Play again?";
             changeColors();
         } else {
             this.style.backgroundColor = "#232323";
             message.textContent = "Wrong Color!";
+            message.style.color = "#FF4500";
         }
     });
 }

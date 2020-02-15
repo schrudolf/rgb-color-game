@@ -48,6 +48,7 @@ resetButton.addEventListener("click", function() {
     bgColor.style.backgroundColor = "steelblue";
     message.textContent = "Good Luck!";
     message.style.color = "#EE82EE";
+    resetButton.textContent = "New Colors";
 });
 
 rgbColor.textContent = selectedColor;

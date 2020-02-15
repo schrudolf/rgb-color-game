@@ -1,71 +1,67 @@
 var squareNumber = 6;
 var colors = randomAllRgb(squareNumber);
 var selectedColor = randomColor();
-var square  = document.querySelectorAll(".square");
-var rgbColor = document.getElementById("rgbColor");
-var message = document.getElementById("message");
-var bgColor = document.getElementById("bgColor");
-var resetButton = document.getElementById("reset");
-var easyBtn = document.getElementById("easyBtn"); 
-var hardBtn = document.getElementById("hardBtn"); 
+var square  = $(".square");
 
-easyBtn.addEventListener("click", function(){
-    easyBtn.classList.add("selected")
-    hardBtn.classList.remove("selected")
+$("#easyBtn").click(function(){
+    $("#easyBtn").addClass("selected");
+    $("#hardBtn").removeClass("selected");
     squareNumber = 3;
     colors = randomAllRgb(squareNumber);
     selectedColor = randomColor();
-    rgbColor.textContent = selectedColor;
+    $("#rgbColor").text(selectedColor);
     for(var i = 0; i < square.length; i++){
         if(colors[i]) {
         square[i].style.backgroundColor = colors[i];
         } else {
             square[i].style.display = "none";
         }
+        $("#bgColor").css("background", "steelblue");
     }   
 })
 
-hardBtn.addEventListener("click", function(){
-    hardBtn.classList.add("selected")
-    easyBtn.classList.remove("selected")
+$("#hardBtn").click(function(){
+    $("#hardBtn").addClass("selected");
+    $("#easyBtn").removeClass("selected");
     squareNumber = 6;
     colors = randomAllRgb(squareNumber);
     selectedColor = randomColor();
-    rgbColor.textContent = selectedColor;
+    $("#rgbColor").text(selectedColor);
     for(var i = 0; i < square.length; i++){
         square[i].style.backgroundColor = colors[i];
         square[i].style.display = "block";
     }
+    $("#bgColor").css("background", "steelblue");
 })
 
-resetButton.addEventListener("click", function() {
+$("#reset").click(function() {
     colors = randomAllRgb(squareNumber);
     selectedColor = randomColor();
-    rgbColor.textContent = selectedColor;
+    $("#rgbColor").text(selectedColor);
     for(var i = 0; i < square.length; i++){
         square[i].style.backgroundColor = colors[i];
     }
-    bgColor.style.backgroundColor = "steelblue";
-    message.textContent = "Good Luck!";
-    message.style.color = "#EE82EE";
-    resetButton.textContent = "New Colors";
+    $("#bgColor").css("background", "steelblue");
+    $("#message").text("Good Luck!");
+    $("#message").css("color", "#EE82EE");
+    $("#reset").text("New Colors");
 });
 
-rgbColor.textContent = selectedColor;
+$("#rgbColor").text(selectedColor);
 
 for(var i = 0; i < square.length; i++) {
     square[i].style.backgroundColor = colors[i];
     square[i].addEventListener("click", function() {
         var clickedColor = this.style.backgroundColor;
         if(clickedColor === selectedColor) {
-            message.textContent = "Correct!";
-            message.style.color = "#32CD32";
-            resetButton.textContent = "Play again?";
+            $("#message").text("Correct!");
+            $("#message").css("color", "#32CD32");
+            $("#reset").text("Play again");
             changeColors();
         } else {
             this.style.backgroundColor = "#232323";
-            message.textContent = "Wrong Color!";
-            message.style.color = "#FF4500";
+            $("#message").text("Wrong Color!");
+            $("#message").css("color", "#FF4500");
         }
     });
 }
@@ -73,7 +69,7 @@ for(var i = 0; i < square.length; i++) {
 function changeColors() {
     for(var i = 0; i < square.length; i++) {
         square[i].style.backgroundColor = selectedColor;
-        bgColor.style.backgroundColor = selectedColor;
+        $("#bgColor").css("background", selectedColor);
     }
 }
 
